@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#173c34"><meta name="description" content="Practice simple Spanish sentences with ser and estar. Listen, record, and get word-by-word feedback."><title>span003 · Spanish out loud</title><link rel="stylesheet" href="./style.css"></head>
+<body>
+<header><a class="brand" href="./">span<span>003</span></a><span class="header-note">A little Spanish. Out loud.</span></header>
+<main>
+<div class="intro"><p class="eyebrow">YOUR DAILY SPEAKING PRACTICE</p><h1>Say it in Spanish.</h1><p>Listen. Read aloud. See how you did.</p></div>
+<section class="practice" aria-label="Speaking practice">
+<div class="card-top"><span id="verb" class="tag">ESTAR · feelings</span><span id="counter">01 / 16</span></div>
+<h2 id="sentence" lang="es"></h2><p id="translation" class="translation"></p>
+<button id="listen" class="listen">♫ Listen to the sentence</button>
+<div class="record-area"><p id="status" role="status" aria-live="polite">Your turn. Tap to record, then tap to finish.</p><button id="record" class="primary"><span aria-hidden="true">●</span> Start recording</button><span id="timer" class="timer" hidden>0:00</span></div>
+<section id="feedback" class="feedback" aria-label="Your feedback" hidden><p class="eyebrow">YOUR RESULT</p><h3 id="result-title"></h3><p id="score"></p><p id="heard" lang="es"></p><div id="words" lang="es" aria-label="Sentence word feedback"></div><p id="advice"></p></section>
+<div id="playback" hidden><label for="audio">Listen to your recording</label><audio id="audio" controls></audio></div>
+<div class="card-bottom"><p id="tip"></p><button id="next" class="next">Next sentence <span aria-hidden="true">→</span></button></div>
+</section>
+<footer><p>Practice, not perfection.</p><p class="fine">Use Chrome for speech recognition. Allow microphone access when asked. Audio may be processed by your browser’s speech service. This app does not save recordings to a server.</p><p class="fine">Feedback measures recognized words, not accent or a professional pronunciation grade.</p></footer>
+</main><script type="module" src="./src/app.js"></script>
+</body></html>
