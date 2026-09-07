@@ -2,7 +2,7 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {speakExample, cancelExample} from '../src/speech.js';
 
-test('waits half a second after each word and cancels pending words', t => {
+test('speaks at regular speed with a 200ms word gap and cancels pending words', t => {
   t.mock.timers.enable({apis:['setTimeout']});
   const spoken=[];
   globalThis.window={speechSynthesis:{cancel(){},getVoices:()=>[],speak:utterance=>spoken.push(utterance)}};
@@ -10,11 +10,11 @@ test('waits half a second after each word and cancels pending words', t => {
   try {
     speakExample('Estoy muy feliz.',()=>assert.fail('Unexpected speech error'));
     assert.equal(spoken[0].text,'Estoy');
-    assert.equal(spoken[0].rate,.4);
+    assert.equal(spoken[0].rate,1);
     t.mock.timers.tick(1000);
     assert.equal(spoken.length,1);
     spoken[0].onend();
-    t.mock.timers.tick(499);
+    t.mock.timers.tick(199);
     assert.equal(spoken.length,1);
     t.mock.timers.tick(1);
     assert.equal(spoken[1].text,'muy');

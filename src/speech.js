@@ -20,12 +20,12 @@ export function speakExample(sentence, onError) {
     const utterance = new SpeechSynthesisUtterance(words[index]);
     activeUtterance = utterance;
     utterance.lang = 'es-MX';
-    utterance.rate = .4;
+    utterance.rate = 1;
     utterance.voice = voice;
     utterance.onend = () => {
       if (current !== generation) return;
       activeUtterance = null;
-      if (index + 1 < words.length) pauseTimer = setTimeout(() => speakWord(index + 1), 500);
+      if (index + 1 < words.length) pauseTimer = setTimeout(() => speakWord(index + 1), 200);
     };
     utterance.onerror = () => {
       if (current !== generation) return;
