@@ -1,3 +1,4 @@
+import {version} from '../package.json';
 import {compare} from './scoring.js';
 import {sentences} from './sentences.js';
 const $ = id => document.getElementById(id);
@@ -20,6 +21,8 @@ async function start(){state='starting';controls();window.speechSynthesis?.cance
  }catch(error){s.finished=true;s.stream?.getTracks().forEach(t=>t.stop());try{s.recognition?.abort();}catch{}state='idle';controls();status(error.name==='NotAllowedError'?'Microphone access was denied. Allow it in your browser settings, then try again.':'Could not start recording. Check your microphone and use Chrome over HTTPS.');}}
 $('record').addEventListener('click',()=>state==='recording'?stop():state==='idle'?start():undefined);
 $('next').addEventListener('click',()=>{window.speechSynthesis?.cancel();$('audio').pause();index=(index+1)%sentences.length;render();});
-$('listen').addEventListener('click',()=>{window.speechSynthesis.cancel();$('audio').pause();const utterance=new SpeechSynthesisUtterance(sentences[index][0]);utterance.lang='es-MX';utterance.rate=.6;const voices=window.speechSynthesis.getVoices();utterance.voice=voices.find(v=>v.lang==='es-MX')||voices.find(v=>v.lang.startsWith('es'))||null;utterance.onerror=()=>status('The example audio is unavailable. You can still read the sentence and record.');window.speechSynthesis.speak(utterance);});
+$('listen').addEventListener('click',()=>{window.speechSynthesis.cancel();$('audio').pause();const utterance=new SpeechSynthesisUtterance(sentences[index][0]);utterance.lang='es-MX';utterance.rate=.4;const voices=window.speechSynthesis.getVoices();utterance.voice=voices.find(v=>v.lang==='es-MX')||voices.find(v=>v.lang.startsWith('es'))||null;utterance.onerror=()=>status('The example audio is unavailable. You can still read the sentence and record.');window.speechSynthesis.speak(utterance);});
 window.addEventListener('pagehide',()=>{if(session){clearInterval(session.ticker);clearTimeout(session.limit);clearTimeout(session.fallback);session.finished=true;session.recognition?.abort();session.stream?.getTracks().forEach(t=>t.stop());}window.speechSynthesis?.cancel();});
 render();if(!Recognition||!navigator.mediaDevices?.getUserMedia||!window.MediaRecorder)status('Recording is unavailable in this browser. Open this page in Chrome with microphone access enabled.');
+
+document.getElementById('version').textContent = `v${version}`;
